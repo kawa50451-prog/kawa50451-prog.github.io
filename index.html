@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>川又 星桜 | Shion Kawamata</title>
+<meta name="description" content="新潟工科大学 都市防災コース。防災カードゲーム Ready or Not の企画・開発。">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="川又 星桜 | Shion Kawamata">
+<meta property="og:description" content="新潟工科大学 都市防災コース。防災カードゲーム Ready or Not の企画・開発。">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdfcf8;
+    --ink: #111;
+    --hair: 1px solid #111;
+    --gutter: 24px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #121212; --ink: #eee; --hair: 1px solid #eee; }
+  }
+  :root[data-theme="dark"] { --bg: #121212; --ink: #eee; --hair: 1px solid #eee; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", sans-serif;
+    font-weight: 400; font-size: 15px; line-height: 1.8;
+    font-feature-settings: "palt";
+  }
+  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* 1. 名前と所属 */
+  header { padding: 56px 0 40px; }
+  .aff { font-size: 13px; letter-spacing: .04em; margin: 0; }
+  .rule { border: 0; border-top: var(--hair); margin: 12px 0 0; }
+  .role { font-size: 14px; letter-spacing: .06em; margin: 40px 0 6px; }
+  h1 { font-size: 34px; font-weight: 700; letter-spacing: .14em; line-height: 1.2; margin: 0; }
+  .name-ul { width: 9.5em; max-width: 100%; border-top: var(--hair); margin: 10px 0 8px; font-size: 34px; }
+  .roma { font-size: 13px; letter-spacing: .16em; margin: 0; }
+  .intro { margin: 36px 0 0; }
+
+  /* 見出し */
+  section { padding: 8px 0 40px; }
+  .label { display: flex; align-items: baseline; gap: 12px; border-bottom: var(--hair); padding-bottom: 8px; margin: 0 0 20px; }
+  .label b { font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+  .label span { font-size: 13px; }
+
+  /* 2. いま取り組んでいること */
+  .work { padding: 0 0 24px; margin-bottom: 24px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+  .work:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+  .work h3 { font-size: 19px; font-weight: 700; margin: 0; line-height: 1.5; }
+  .work .org { font-size: 13px; margin: 2px 0 10px; }
+  .work p { margin: 0; }
+  .rn { display: flex; gap: 16px; align-items: flex-start; margin-top: 16px; }
+  .rn img.icon { width: 64px; height: 64px; border-radius: 14px; flex: none; }
+  .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; margin: 0; padding: 0; list-style: none; }
+  .gp img { height: 44px; width: auto; display: block; margin-top: 10px; }
+
+  /* 3. これまでの活動 */
+  dl.tl { margin: 0; display: grid; grid-template-columns: 5.2em 1fr; column-gap: 16px; }
+  dl.tl dt { font-size: 13px; letter-spacing: .04em; padding: 10px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); font-variant-numeric: tabular-nums; }
+  dl.tl dd { margin: 0; padding: 10px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+  dl.tl dt:first-of-type, dl.tl dt:first-of-type + dd { border-top: 0; padding-top: 0; }
+
+  /* 4. 受賞 */
+  .award h3 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+  .award .ttl { margin: 0 0 8px; }
+  .award .note { font-size: 13px; margin: 0; }
+
+  /* 5. 連絡先 */
+  .contact { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .contact b { font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+  .contact a { font-size: 16px; word-break: break-all; }
+
+  footer { padding: 24px 0 48px; font-size: 12px; border-top: var(--hair); }
+
+  @media (min-width: 720px) {
+    body { font-size: 16px; }
+    header { padding: 96px 0 56px; }
+    h1, .name-ul { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="aff">新潟工科大学 工学部 工学科 都市防災コース</p>
+    <hr class="rule">
+    <p class="role">Ready or Lab 代表</p>
+    <h1>川又 星桜</h1>
+    <div class="name-ul"></div>
+    <p class="roma">Shion Kawamata</p>
+    <p class="intro">新潟工科大学で都市防災を学んでいます。遊びながら防災を学べるカードゲーム「Ready or Not」を企画・開発し、Google Play で公開しています。</p>
+  </header>
+
+  <section>
+    <h2 class="label"><b>NOW</b><span>いま取り組んでいること</span></h2>
+
+    <div class="work">
+      <h3>遊びながら防災を学べる</h3>
+      <p class="org">Ready or Not ／ Ready or Lab</p>
+      <p>備える・配る・諦める。防災の判断を何度でも試し、その結果を数分で受け取れる対戦型のカードゲームです。企画から開発、公開までを、サークル Ready or Lab で進めています。</p>
+      <div class="rn">
+        <img class="icon" src="assets/app_icon.webp" alt="Ready or Not のアイコン">
+        <div>
+          <ul class="links">
+            <li><a href="https://toshibousai-cardgame.web.app">ブラウザで遊ぶ</a></li>
+            <li><a href="https://youtu.be/k9EVcFdG0n4">紹介動画</a></li>
+          </ul>
+          <a class="gp" href="https://play.google.com/store/apps/details?id=com.readyorlab.readyornot&amp;hl=ja"><img src="assets/googleplay_ja.png" alt="Google Play で手に入れよう"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="work">
+      <h3>地域企業の困りごとを支援する</h3>
+      <p class="org">CO-LAB NIIGATA</p>
+      <p>新潟県の社会実装型プログラムで、学生チームとして県内の企業に入り、若手の採用と業務の効率化に取り組んでいます。</p>
+    </div>
+
+    <div class="work">
+      <h3>祭りの文化を次世代へ</h3>
+      <p class="org">八坂祇園會 実践型インターンシップ</p>
+      <p>柏崎八坂神社の八坂祇園會で、縁日と広報を企画しています。2年続けて参加し、ぎおん柏崎まつり 海の大花火大会の当日の運営にも加わりました。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label"><b>HISTORY</b><span>これまでの活動</span></h2>
+    <dl class="tl">
+      <dt>2026.10</dt><dd>AIプロトタイプチャレンジ（新潟市主催）に参加</dd>
+      <dt>2026.09</dt><dd>ビジネスアイデアコンテスト Open Gate NIIGATA 2026 に出場</dd>
+      <dt>2026.08</dt><dd>Ready or Not を Google Play で公開</dd>
+      <dt>2026.08</dt><dd>CO-LAB NIIGATA に参加</dd>
+      <dt>2026.07</dt><dd>DXハッカソン（新潟市）に参加</dd>
+      <dt>2026.07</dt><dd>ぎおん柏崎まつり 海の大花火大会の当日運営（八坂祇園會 2年目）</dd>
+      <dt>2026.06</dt><dd>サークル Ready or Lab を設立し、代表に</dd>
+      <dt>2026.02</dt><dd>日本都市計画学会 都市構造評価特別委員会賞を受賞</dd>
+      <dt>2025</dt><dd>八坂祇園會 実践型インターンシップに参加</dd>
+    </dl>
+  </section>
+
+  <section class="award">
+    <h2 class="label"><b>AWARD</b><span>受賞</span></h2>
+    <h3>日本都市計画学会 都市構造評価特別委員会賞</h3>
+    <p class="ttl">「『労働力』から『生活者』へ ― 新潟市・聖籠町の産業相関と外国人居住環境の分析による広域連携型定住モデルの提案」</p>
+    <p class="note">令和7年12月締め切り分。同時に受賞した2名は大学院生で、学部生の受賞はこの回で1人でした。</p>
+  </section>
+
+  <section>
+    <h2 class="label"><b>CONTACT</b><span>連絡先</span></h2>
+    <p class="contact"><b>MAIL</b><a href="mailto:shion.kawamata.work@gmail.com">shion.kawamata.work@gmail.com</a></p>
+  </section>
+
+  <footer>© 2026 Shion Kawamata</footer>
+</div>
+</body>
+</html>
