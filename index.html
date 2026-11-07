@@ -49,17 +49,16 @@
   .aff { font-size: 13px; margin: 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
   .role { font-size: 14px; letter-spacing: .08em; margin: 48px 0 4px; }
   h1 { font-size: 38px; font-weight: 700; letter-spacing: .14em; line-height: 1.25; margin: 0; }
-  .name-ul { width: 6.4em; border-top: 1px solid var(--line); margin: 12px 0 10px; font-size: 38px; }
+  .name-ul { width: 6.4em; border-top: 2px solid var(--accent); margin: 12px 0 10px; font-size: 38px; }
   .roma { font-size: 13px; letter-spacing: .18em; margin: 0; color: var(--mute); }
   .intro { margin: 40px 0 0; }
 
-  /* 区切りの見出し：番号＋英字＋日本語。番号だけ差し色 */
+  /* 区切りの見出し：英字を紺で大きく、日本語を小さく添える。下線も紺 */
   section { padding: 0 0 64px; }
-  .sec-h { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: baseline;
-           border-bottom: 1px solid var(--line); padding-bottom: 10px; margin: 0 0 28px; }
-  .sec-h .no { font-size: 13px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
-  .sec-h .en { font-size: 22px; font-weight: 700; letter-spacing: .12em; line-height: 1.2; }
-  .sec-h .ja { grid-column: 2; font-size: 13px; font-weight: 400; color: var(--mute); letter-spacing: .06em; }
+  .sec-h { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+           border-bottom: 1px solid var(--accent); padding-bottom: 10px; margin: 0 0 28px; }
+  .sec-h .en { font-size: 22px; font-weight: 700; letter-spacing: .12em; line-height: 1.2; color: var(--accent); }
+  .sec-h .ja { font-size: 13px; font-weight: 400; color: var(--mute); letter-spacing: .06em; }
 
   /* いま取り組んでいること */
   .work + .work { border-top: 1px solid var(--soft); padding-top: 32px; margin-top: 32px; }
@@ -76,15 +75,26 @@
   /* これまでの活動：年ごとにまとめ、月と出来事を並べる */
   .year { display: grid; grid-template-columns: 4.2em 1fr; column-gap: 16px; }
   .year + .year { margin-top: 20px; }
-  .year h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .04em; line-height: 1.6; font-variant-numeric: tabular-nums; }
-  .year ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--soft); }
-  .year li { display: grid; grid-template-columns: 2.4em 1fr; column-gap: 8px; padding: 0 0 12px 16px; }
+  .year h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .04em; line-height: 1.6; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .year ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+  .year li { position: relative; display: grid; grid-template-columns: 2.4em 1fr; column-gap: 8px; padding: 0 0 12px 18px; }
+  /* 縦線の上に小さな点を置き、出来事の位置を示す */
+  .year li::before { content: ""; position: absolute; left: -4px; top: .78em; width: 7px; height: 7px; border-radius: 50%;
+                     background: var(--bg); border: 1.5px solid var(--accent); box-sizing: border-box; }
+  .year li:first-child::before { background: var(--accent); }
   .year li .m { font-size: 13px; color: var(--mute); font-variant-numeric: tabular-nums; line-height: 2.2; }
 
   /* 受賞 */
   .award h3 { font-size: 17px; font-weight: 700; margin: 0 0 8px; line-height: 1.6; }
   .award .ttl { margin: 0 0 6px; }
   .award .meta { font-size: 13px; color: var(--mute); margin: 0 0 12px; }
+
+  /* 資格：分野ごとにまとめ、幅の広さが一目で分かるようにする */
+  .lic { display: grid; grid-template-columns: 1fr; gap: 18px; }
+  .lic-g h3 { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .08em; margin: 0 0 4px; }
+  .lic-g ul { list-style: none; margin: 0; padding: 0; }
+  .lic-g li { padding: 6px 0; border-bottom: 1px solid var(--soft); }
+  @media (min-width: 720px) { .lic { grid-template-columns: 1fr 1fr; column-gap: 32px; } }
 
   /* 連絡先 */
   .contact { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 0; }
@@ -115,7 +125,7 @@
   </header>
 
   <section>
-    <h2 class="sec-h"><span class="no">01</span><span class="en">NOW</span><span class="ja">いま取り組んでいること</span></h2>
+    <h2 class="sec-h"><span class="en">NOW</span><span class="ja">いま取り組んでいること</span></h2>
 
     <div class="work">
       <h3>遊びながら防災を学べる</h3>
@@ -145,7 +155,7 @@
   </section>
 
   <section>
-    <h2 class="sec-h"><span class="no">02</span><span class="en">HISTORY</span><span class="ja">これまでの活動</span></h2>
+    <h2 class="sec-h"><span class="en">HISTORY</span><span class="ja">これまでの活動</span></h2>
 
     <div class="year">
       <h3>2026</h3>
@@ -169,7 +179,7 @@
   </section>
 
   <section class="award">
-    <h2 class="sec-h"><span class="no">03</span><span class="en">AWARD</span><span class="ja">受賞</span></h2>
+    <h2 class="sec-h"><span class="en">AWARD</span><span class="ja">受賞</span></h2>
     <h3>日本都市計画学会 都市構造評価特別委員会賞</h3>
     <p class="ttl">「労働力」から「生活者」へ ― 新潟市・聖籠町の産業相関と外国人居住環境の分析による広域連携型定住モデルの提案</p>
     <p class="meta">令和7年度（令和7年12月締め切り分）</p>
@@ -177,7 +187,20 @@
   </section>
 
   <section>
-    <h2 class="sec-h"><span class="no">04</span><span class="en">CONTACT</span><span class="ja">連絡先</span></h2>
+    <h2 class="sec-h"><span class="en">LICENSE</span><span class="ja">資格</span></h2>
+    <div class="lic">
+      <div class="lic-g"><h3>土木・建設</h3><ul><li>1級土木施工管理技士補</li></ul></div>
+      <div class="lic-g"><h3>情報</h3><ul>
+        <li>AWS Certified Solutions Architect – Associate</li>
+        <li>応用情報技術者</li>
+        <li>基本情報技術者</li></ul></div>
+      <div class="lic-g"><h3>品質管理</h3><ul><li>QC検定 2級</li></ul></div>
+      <div class="lic-g"><h3>不動産・法規</h3><ul><li>宅地建物取引士試験 合格</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-h"><span class="en">CONTACT</span><span class="ja">連絡先</span></h2>
     <p class="contact"><b>MAIL</b><a href="mailto:shion.kawamata.work@gmail.com">shion.kawamata.work@gmail.com</a></p>
   </section>
 
