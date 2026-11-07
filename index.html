@@ -13,77 +13,92 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* 色：紙のような生成りの地に、墨色の文字。差し色は紺を1色だけ（見出しの番号・リンク） */
   :root {
-    --bg: #fdfcf8;
-    --ink: #111;
-    --hair: 1px solid #111;
+    --bg: #f6f4ef;
+    --ink: #262523;
+    --mute: #66625b;
+    --line: #262523;
+    --soft: #d9d5cc;
+    --accent: #1f3a5f;
     --gutter: 24px;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #121212; --ink: #eee; --hair: 1px solid #eee; }
+    :root:not([data-theme="light"]) {
+      --bg: #1b1b1a; --ink: #ebe8e2; --mute: #a9a49a; --line: #ebe8e2; --soft: #3a3936; --accent: #9db4d3;
+    }
   }
-  :root[data-theme="dark"] { --bg: #121212; --ink: #eee; --hair: 1px solid #eee; }
+  :root[data-theme="dark"] {
+    --bg: #1b1b1a; --ink: #ebe8e2; --mute: #a9a49a; --line: #ebe8e2; --soft: #3a3936; --accent: #9db4d3;
+  }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
     font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", sans-serif;
-    font-weight: 400; font-size: 15px; line-height: 1.8;
-    font-feature-settings: "palt";
+    font-size: 15px; line-height: 1.9; font-feature-settings: "palt"; letter-spacing: .02em;
   }
-  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 0 var(--gutter); }
+  a { color: var(--accent); text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  /* 1行が長くなりすぎないよう、本文の幅は日本語で35字前後に抑える */
+  .wrap { max-width: 600px; margin: 0 auto; padding: 0 var(--gutter); }
 
-  /* 1. 名前と所属 */
-  header { padding: 56px 0 40px; }
-  .aff { font-size: 13px; letter-spacing: .04em; margin: 0; }
-  .rule { border: 0; border-top: var(--hair); margin: 12px 0 0; }
-  .role { font-size: 14px; letter-spacing: .06em; margin: 40px 0 6px; }
-  h1 { font-size: 34px; font-weight: 700; letter-spacing: .14em; line-height: 1.2; margin: 0; }
-  .name-ul { width: 9.5em; max-width: 100%; border-top: var(--hair); margin: 10px 0 8px; font-size: 34px; }
-  .roma { font-size: 13px; letter-spacing: .16em; margin: 0; }
-  .intro { margin: 36px 0 0; }
+  /* 名前と所属（名刺の表と同じ組み） */
+  header { padding: 64px 0 56px; }
+  .aff { font-size: 13px; margin: 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .role { font-size: 14px; letter-spacing: .08em; margin: 48px 0 4px; }
+  h1 { font-size: 38px; font-weight: 700; letter-spacing: .14em; line-height: 1.25; margin: 0; }
+  .name-ul { width: 6.4em; border-top: 1px solid var(--line); margin: 12px 0 10px; font-size: 38px; }
+  .roma { font-size: 13px; letter-spacing: .18em; margin: 0; color: var(--mute); }
+  .intro { margin: 40px 0 0; }
 
-  /* 見出し */
-  section { padding: 8px 0 40px; }
-  .label { display: flex; align-items: baseline; gap: 12px; border-bottom: var(--hair); padding-bottom: 8px; margin: 0 0 20px; }
-  .label b { font-size: 11px; font-weight: 700; letter-spacing: .18em; }
-  .label span { font-size: 13px; }
+  /* 区切りの見出し：番号＋英字＋日本語。番号だけ差し色 */
+  section { padding: 0 0 64px; }
+  .sec-h { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: baseline;
+           border-bottom: 1px solid var(--line); padding-bottom: 10px; margin: 0 0 28px; }
+  .sec-h .no { font-size: 13px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .sec-h .en { font-size: 22px; font-weight: 700; letter-spacing: .12em; line-height: 1.2; }
+  .sec-h .ja { grid-column: 2; font-size: 13px; font-weight: 400; color: var(--mute); letter-spacing: .06em; }
 
-  /* 2. いま取り組んでいること */
-  .work { padding: 0 0 24px; margin-bottom: 24px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
-  .work:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
-  .work h3 { font-size: 19px; font-weight: 700; margin: 0; line-height: 1.5; }
-  .work .org { font-size: 13px; margin: 2px 0 10px; }
+  /* いま取り組んでいること */
+  .work + .work { border-top: 1px solid var(--soft); padding-top: 32px; margin-top: 32px; }
+  .work h3 { font-size: 21px; font-weight: 700; line-height: 1.5; margin: 0; }
+  .work .org { font-size: 13px; color: var(--mute); margin: 4px 0 14px; }
   .work p { margin: 0; }
-  .rn { display: flex; gap: 16px; align-items: flex-start; margin-top: 16px; }
+  .rn { display: flex; gap: 16px; align-items: center; margin-top: 20px; }
   .rn img.icon { width: 64px; height: 64px; border-radius: 14px; flex: none; }
-  .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; margin: 0; padding: 0; list-style: none; }
-  .gp img { height: 44px; width: auto; display: block; margin-top: 10px; }
+  .rn .side { display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  .rn .soon { color: var(--mute); }
+  .gp img { height: 44px; width: auto; display: block; }
+  .more { margin-top: 14px; font-size: 14px; }
 
-  /* 3. これまでの活動 */
-  dl.tl { margin: 0; display: grid; grid-template-columns: 5.2em 1fr; column-gap: 16px; }
-  dl.tl dt { font-size: 13px; letter-spacing: .04em; padding: 10px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); font-variant-numeric: tabular-nums; }
-  dl.tl dd { margin: 0; padding: 10px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
-  dl.tl dt:first-of-type, dl.tl dt:first-of-type + dd { border-top: 0; padding-top: 0; }
+  /* これまでの活動：年ごとにまとめ、月と出来事を並べる */
+  .year { display: grid; grid-template-columns: 4.2em 1fr; column-gap: 16px; }
+  .year + .year { margin-top: 20px; }
+  .year h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: .04em; line-height: 1.6; font-variant-numeric: tabular-nums; }
+  .year ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--soft); }
+  .year li { display: grid; grid-template-columns: 2.4em 1fr; column-gap: 8px; padding: 0 0 12px 16px; }
+  .year li .m { font-size: 13px; color: var(--mute); font-variant-numeric: tabular-nums; line-height: 2.2; }
 
-  /* 4. 受賞 */
-  .award h3 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
-  .award .ttl { margin: 0 0 8px; }
-  .award .note { font-size: 13px; margin: 0; }
+  /* 受賞 */
+  .award h3 { font-size: 17px; font-weight: 700; margin: 0 0 8px; line-height: 1.6; }
+  .award .ttl { margin: 0 0 6px; }
+  .award .meta { font-size: 13px; color: var(--mute); margin: 0 0 12px; }
 
-  /* 5. 連絡先 */
-  .contact { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-  .contact b { font-size: 11px; font-weight: 700; letter-spacing: .18em; }
-  .contact a { font-size: 16px; word-break: break-all; }
+  /* 連絡先 */
+  .contact { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin: 0; }
+  .contact b { font-size: 11px; letter-spacing: .2em; }
+  .contact a { font-size: 17px; word-break: break-all; }
 
-  footer { padding: 24px 0 48px; font-size: 12px; border-top: var(--hair); }
+  footer { padding: 20px 0 56px; font-size: 12px; color: var(--mute); border-top: 1px solid var(--line); }
 
   @media (min-width: 720px) {
     body { font-size: 16px; }
-    header { padding: 96px 0 56px; }
-    h1, .name-ul { font-size: 44px; }
+    header { padding: 112px 0 80px; }
+    h1, .name-ul { font-size: 52px; }
+    .sec-h .en { font-size: 26px; }
+    section { padding-bottom: 88px; }
   }
 </style>
 </head>
@@ -92,28 +107,24 @@
 
   <header>
     <p class="aff">新潟工科大学 工学部 工学科 都市防災コース</p>
-    <hr class="rule">
     <p class="role">Ready or Lab 代表</p>
     <h1>川又 星桜</h1>
     <div class="name-ul"></div>
     <p class="roma">Shion Kawamata</p>
-    <p class="intro">新潟工科大学で都市防災を学んでいます。遊びながら防災を学べるカードゲーム「Ready or Not」を企画・開発し、Google Play で公開しています。</p>
+    <p class="intro">大学では、主に土木と防災を学んでいます。遊びながら防災を学べるカードゲーム「Ready or Not」を企画・開発し、Google Play で公開しています。</p>
   </header>
 
   <section>
-    <h2 class="label"><b>NOW</b><span>いま取り組んでいること</span></h2>
+    <h2 class="sec-h"><span class="no">01</span><span class="en">NOW</span><span class="ja">いま取り組んでいること</span></h2>
 
     <div class="work">
       <h3>遊びながら防災を学べる</h3>
-      <p class="org">Ready or Not ／ Ready or Lab</p>
+      <p class="org">Ready or Not ／ サークル Ready or Lab</p>
       <p>備える・配る・諦める。防災の判断を何度でも試し、その結果を数分で受け取れる対戦型のカードゲームです。企画から開発、公開までを、サークル Ready or Lab で進めています。</p>
       <div class="rn">
         <img class="icon" src="assets/app_icon.webp" alt="Ready or Not のアイコン">
-        <div>
-          <ul class="links">
-            <li><a href="https://toshibousai-cardgame.web.app">ブラウザで遊ぶ</a></li>
-            <li><a href="https://youtu.be/k9EVcFdG0n4">紹介動画</a></li>
-          </ul>
+        <div class="side">
+          <span class="soon">公式サイト（準備中）</span>
           <a class="gp" href="https://play.google.com/store/apps/details?id=com.readyorlab.readyornot&amp;hl=ja"><img src="assets/googleplay_ja.png" alt="Google Play で手に入れよう"></a>
         </div>
       </div>
@@ -121,41 +132,52 @@
 
     <div class="work">
       <h3>地域企業の困りごとを支援する</h3>
-      <p class="org">CO-LAB NIIGATA</p>
-      <p>新潟県の社会実装型プログラムで、学生チームとして県内の企業に入り、若手の採用と業務の効率化に取り組んでいます。</p>
+      <p class="org">CO-LAB NIIGATA（新潟県）</p>
+      <p>学生チームが地域企業の実際の課題に入り込み、調査・検証・提案を行い、提案のその先までやりきる実践型プログラムです。県内の企業とともに、若手の採用と業務の効率化に取り組んでいます。</p>
+      <p class="more"><a href="https://co-lab-niigata.jp/">CO-LAB NIIGATA について</a></p>
     </div>
 
     <div class="work">
       <h3>祭りの文化を次世代へ</h3>
       <p class="org">八坂祇園會 実践型インターンシップ</p>
-      <p>柏崎八坂神社の八坂祇園會で、縁日と広報を企画しています。2年続けて参加し、ぎおん柏崎まつり 海の大花火大会の当日の運営にも加わりました。</p>
+      <p>柏崎八坂神社は、ぎおん柏崎まつりの発祥の神社です。1950年に神社の祇園祭と商工祭が一つになり、今のまつりが生まれました。八坂祇園會は、その祭りの文化を神社から受け継ぐ取り組みで、柏崎の地域コーディネーターが企画し、学生チームが実践型インターンシップとして加わっています。1年目は当日の運営に、2年目はそれに加えて縁日と広報の企画にも関わりました。</p>
     </div>
   </section>
 
   <section>
-    <h2 class="label"><b>HISTORY</b><span>これまでの活動</span></h2>
-    <dl class="tl">
-      <dt>2026.10</dt><dd>AIプロトタイプチャレンジ（新潟市主催）に参加</dd>
-      <dt>2026.09</dt><dd>ビジネスアイデアコンテスト Open Gate NIIGATA 2026 に出場</dd>
-      <dt>2026.08</dt><dd>Ready or Not を Google Play で公開</dd>
-      <dt>2026.08</dt><dd>CO-LAB NIIGATA に参加</dd>
-      <dt>2026.07</dt><dd>DXハッカソン（新潟市）に参加</dd>
-      <dt>2026.07</dt><dd>ぎおん柏崎まつり 海の大花火大会の当日運営（八坂祇園會 2年目）</dd>
-      <dt>2026.06</dt><dd>サークル Ready or Lab を設立し、代表に</dd>
-      <dt>2026.02</dt><dd>日本都市計画学会 都市構造評価特別委員会賞を受賞</dd>
-      <dt>2025</dt><dd>八坂祇園會 実践型インターンシップに参加</dd>
-    </dl>
+    <h2 class="sec-h"><span class="no">02</span><span class="en">HISTORY</span><span class="ja">これまでの活動</span></h2>
+
+    <div class="year">
+      <h3>2026</h3>
+      <ol>
+        <li><span class="m">10月</span><span>Niigata Startup Round（AIプロトタイプチャレンジ、実践型オンライン講座）に参加</span></li>
+        <li><span class="m">09月</span><span>ビジネスアイデアコンテスト Open Gate NIIGATA 2026 に出場</span></li>
+        <li><span class="m">08月</span><span>Ready or Not を Google Play で公開</span></li>
+        <li><span class="m">08月</span><span>CO-LAB NIIGATA に参加</span></li>
+        <li><span class="m">07月</span><span>DXハッカソンに参加</span></li>
+        <li><span class="m">07月</span><span>八坂祇園會 実践型インターンシップ（2年目）</span></li>
+        <li><span class="m">06月</span><span>サークル Ready or Lab を設立し、代表に</span></li>
+        <li><span class="m">02月</span><span>日本都市計画学会 都市構造評価特別委員会賞を受賞</span></li>
+      </ol>
+    </div>
+    <div class="year">
+      <h3>2025</h3>
+      <ol>
+        <li><span class="m">07月</span><span>八坂祇園會 実践型インターンシップ（1年目）</span></li>
+      </ol>
+    </div>
   </section>
 
   <section class="award">
-    <h2 class="label"><b>AWARD</b><span>受賞</span></h2>
+    <h2 class="sec-h"><span class="no">03</span><span class="en">AWARD</span><span class="ja">受賞</span></h2>
     <h3>日本都市計画学会 都市構造評価特別委員会賞</h3>
-    <p class="ttl">「『労働力』から『生活者』へ ― 新潟市・聖籠町の産業相関と外国人居住環境の分析による広域連携型定住モデルの提案」</p>
-    <p class="note">令和7年12月締め切り分。同時に受賞した2名は大学院生で、学部生の受賞はこの回で1人でした。</p>
+    <p class="ttl">「労働力」から「生活者」へ ― 新潟市・聖籠町の産業相関と外国人居住環境の分析による広域連携型定住モデルの提案</p>
+    <p class="meta">令和7年度（令和7年12月締め切り分）</p>
+    <p><a href="https://v4.mieruka.city/wp-content/uploads/2026/02/R7_winning-entry_007.pdf">論文を読む（PDF）</a></p>
   </section>
 
   <section>
-    <h2 class="label"><b>CONTACT</b><span>連絡先</span></h2>
+    <h2 class="sec-h"><span class="no">04</span><span class="en">CONTACT</span><span class="ja">連絡先</span></h2>
     <p class="contact"><b>MAIL</b><a href="mailto:shion.kawamata.work@gmail.com">shion.kawamata.work@gmail.com</a></p>
   </section>
 
